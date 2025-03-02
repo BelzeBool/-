@@ -1,0 +1,288 @@
+/* Общие стили */
+:root {
+    --bg-color: #f4f4f9;
+    --text-color: #333;
+    --navbar-bg: #007BFF;
+    --navbar-text: white;
+    --post-bg: white;
+    --post-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --input-bg: white;
+    --input-border: #ddd;
+    --button-bg: #007BFF;
+    --button-hover: #0056b3;
+    --toggle-bg: #ccc;
+    --toggle-slider: white;
+    --chat-bg: #e5e5ea;
+    --chat-user-bg: #007BFF;
+    --chat-user-text: white;
+    --chat-other-bg: #f1f1f1;
+    --chat-other-text: #333;
+}
+
+[data-theme="dark"] {
+    --bg-color: #1a1a1a;
+    --text-color: #f4f4f9;
+    --navbar-bg: #333;
+    --navbar-text: #f4f4f9;
+    --post-bg: #444;
+    --post-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+    --input-bg: #555;
+    --input-border: #777;
+    --button-bg: #555;
+    --button-hover: #777;
+    --toggle-bg: #444;
+    --toggle-slider: #f4f4f9;
+    --chat-bg: #2d2d2d;
+    --chat-user-bg: #007BFF;
+    --chat-user-text: white;
+    --chat-other-bg: #444;
+    --chat-other-text: #f4f4f9;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.navbar {
+    background-color: var(--navbar-bg);
+    padding: 10px 20px;
+    color: var(--navbar-text);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar a {
+    color: var(--navbar-text);
+    margin-left: 15px;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    background-color: var(--button-bg);
+    transition: background-color 0.3s;
+}
+
+.navbar a:hover {
+    background-color: var(--button-hover);
+}
+
+.form-container {
+    background-color: var(--post-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--post-shadow);
+    max-width: 400px;
+    margin: 50px auto;
+}
+
+.form-container input[type="text"],
+.form-container input[type="password"],
+.form-container textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid var(--input-border);
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+}
+
+.form-container button {
+    background-color: var(--button-bg);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.form-container button:hover {
+    background-color: var(--button-hover);
+}
+
+.post {
+    background-color: var(--post-bg);
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: var(--post-shadow);
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.post h3 {
+    margin-top: 0;
+}
+
+.post p {
+    margin: 10px 0;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.google-button {
+    background-color: #db4437;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-align: center;
+    display: block;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+.google-button:hover {
+    background-color: #c23321;
+}
+
+/* Переключатель темы */
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--toggle-bg);
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: var(--toggle-slider);
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--button-bg);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* Кнопка "Создать пост" */
+.create-post-button {
+    background-color: var(--button-bg);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.create-post-button:hover {
+    background-color: var(--button-hover);
+}
+
+/* Чат */
+.chat-container {
+    background-color: var(--chat-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--post-shadow);
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.chat-message {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-message.user {
+    align-items: flex-end;
+}
+
+.chat-message.other {
+    align-items: flex-start;
+}
+
+.chat-bubble {
+    max-width: 70%;
+    padding: 10px 15px;
+    border-radius: 12px;
+    word-wrap: break-word;
+}
+
+.chat-bubble.user {
+    background-color: var(--chat-user-bg);
+    color: var(--chat-user-text);
+}
+
+.chat-bubble.other {
+    background-color: var(--chat-other-bg);
+    color: var(--chat-other-text);
+}
+
+.chat-input {
+    display: flex;
+    margin-top: 20px;
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid var(--input-border);
+    border-radius: 4px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    margin-right: 10px;
+}
+
+.chat-input button {
+    background-color: var(--button-bg);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.chat-input button:hover {
+    background-color: var(--button-hover);
+}

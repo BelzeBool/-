@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <h1>Главная страница</h1>
+        <div>
+            <label class="theme-switch">
+                <input type="checkbox" id="theme-toggle">
+                <span class="slider"></span>
+            </label>
+            <a href="/chat">Чат</a>
+            {% if user %}
+                <a href="/profile">{{ user.username }}</a>
+                <a href="/logout">Выйти</a>
+            {% else %}
+                <a href="/login">Войти</a>
+                <a href="/registration">Регистрация</a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="container">
+        {% if user %}
+            <a href="/create_post" class="create-post-button">Создать пост</a>
+        {% endif %}
+        <h2>Публикации</h2>
+        {% for post in posts %}
+            <div class="post">
+                <h3>{{ post.title }}</h3>
+                <p>{{ post.text }}</p>
+                <p><small>Опубликовано: {{ post.at_publish }} | Автор: <a href="/user/{{ post.author_id }}">{{ post.author_name }}</a></small></p>
+            </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const currentTheme = localStorage.getItem('theme') || 'light';
+
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        if (currentTheme === 'dark') {
+            themeToggle.checked = true;
+        }
+
+        themeToggle.addEventListener('change', () => {
+            const newTheme = themeToggle.checked ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <h1>Профиль</h1>
+        <div>
+            <a href="/logout">Выйти</a>
+            <a href="/">На главную</a>
+        </div>
+    </div>
+    <div class="container">
+        <h2>Добро пожаловать, {{ user.username }}!</h2>
+        <a href="/create_post" class="button">Создать пост</a>
+        <h3>Мои публикации</h3>
+        {% for post in posts %}
+            <div class="post">
+                <h4>{{ post.title }}</h4>
+                <p>{{ post.text }}</p>
+                <p><small>Опубликовано: {{ post.at_publish }}</small></p>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
